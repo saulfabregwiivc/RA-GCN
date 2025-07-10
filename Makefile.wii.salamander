@@ -29,8 +29,8 @@ ELF2DOL = $(DEVKITPPC)/bin/elf2dol$(EXE_EXT)
 DOL_TARGET := retroarch-salamander_wii.dol
 ELF_TARGET := retroarch-salamander_wii.elf
 
-INCLUDE := -I. -I$(DEVKITPRO)/libogc/include -Ilibretro-sdk/include
-LIBDIRS := -L$(DEVKITPRO)/libogc/lib/wii -L.
+INCLUDE := -I. -I$(DEVKITPRO)/libogc2/include -Ilibretro-sdk/include
+LIBDIRS := -L$(DEVKITPRO)/libogc2/lib/wii -L.
 
 MACHDEP := -DGEKKO -DHW_RVL -mrvl -mcpu=750 -meabi -mhard-float
 CFLAGS += -Wall -std=gnu99 $(MACHDEP) $(INCLUDE)
