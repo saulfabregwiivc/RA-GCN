@@ -217,8 +217,8 @@ else ifeq ($(platform), wii)
   ELF2DOL = $(DEVKITPPC)/bin/elf2dol$(EXE_EXT)
   EXT_TARGET := $(TARGET_NAME)_wii.dol
   EXT_INTER_TARGET := $(TARGET_NAME)_wii.elf
-  INCLUDE += -I. -I$(DEVKITPRO)/libogc/include -Ideps/rzlib
-  LIBDIRS += -L$(DEVKITPRO)/libogc/lib/wii -L.
+  INCLUDE += -I. -I$(DEVKITPRO)/libogc2/include -Ideps/rzlib
+  LIBDIRS += -L$(DEVKITPRO)/libogc2/lib/wii -L.
   MACHDEP := -DGEKKO -DHW_RVL -mrvl -mcpu=750 -meabi -mhard-float -DMSB_FIRST
   LDFLAGS += $(MACHDEP) -Wl,-Map,$(notdir $(EXT_INTER_TARGET)).map,-wrap,malloc,-wrap,free,-wrap,memalign,-wrap,calloc,-wrap,realloc,-wrap,strdup,-wrap,strndup,-wrap,malloc_usable_size
 ifeq ($(BIG_STACK), 1)
@@ -237,8 +237,10 @@ endif
   HAVE_RSOUND              := 1
   HAVE_ZLIB                := 1
   HAVE_7ZIP                := 0
-  HAVE_RPNG                := 0
-  HAVE_OVERLAY             := 0
+ifeq ($(OVERLAY), 1)
+  HAVE_RPNG                := 1
+  HAVE_OVERLAY             := 1
+endif
   HAVE_LIBSICKSAXIS			:= 0
   HAVE_BUILTIN_AUTOCONFIG  := 1
 else ifeq ($(platform), psp1)
